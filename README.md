@@ -21,7 +21,7 @@ fec= pd.read_csv("P00000001-ALL.csv", low_memory=False)
 fec.info()
 ```
 
-![image](https://github.com/EduardoJMR/Federal-Election-project/blob/master/images/Capture.JPG)
+![image](images/Capture.JPG)
 
 ## Total donations by party for top occupations?
 
@@ -50,7 +50,7 @@ pd.Series(parties, index=['Bachman, Michelle', 'Cain, Herman', 'Gingrich, Newt',
 fec["party"]=fec["cand_nm"].map(parties)
 fec["party"]
 ```
-![image](https://github.com/EduardoJMR/Federal-Election-project/blob/master/images/Capture2.JPG)
+![image](images/Capture2.JPG)
 
 ### Cleaning the data
 
@@ -60,7 +60,7 @@ fec["party"]
 fec= fec[fec["contb_receipt_amt"] > 0]
 fec["contbr_occupation"].value_counts()[:10]
 ```
-![image](https://github.com/EduardoJMR/Federal-Election-project/blob/master/images/Capture3.JPG)
+![image](images/Capture3.JPG)
 
 ##### In order to keep optimizing the data because there are some entries in the contribution employer and contribution information added with different words but with the same meaning that can be transformed to the same word.
 
@@ -87,7 +87,7 @@ def get_emp(x):
 fec["contbr_employer"] = fec["contbr_employer"].map(get_emp)
 fec["contbr_employer"].value_counts()[:10]
 ```
-![image](https://github.com/EduardoJMR/Federal-Election-project/blob/master/images/Capture5.JPG)
+![image](images/Capture5.JPG)
 
 ### Visualizing the data
 
@@ -96,17 +96,17 @@ by_occupation= fec.pivot_table("contb_receipt_amt", index="contbr_employer", col
 by_occupation.head(50)
 ```
 
-![image](https://github.com/EduardoJMR/Federal-Election-project/blob/master/images/Capture6.JPG)
+![image](images/Capture6.JPG)
 
 ```python
 over_2mm= by_occupation[by_occupation.sum(axis="columns") > 2000000]
 over_2mm
 ```
-![image](https://github.com/EduardoJMR/Federal-Election-project/blob/master/images/Capture7.JPG)
+![image](images/Capture7.JPG)
 
 ### Total donations by party for top occupations
 
-![image](https://github.com/EduardoJMR/Federal-Election-project/blob/master/images/Capture8.JPG)
+![image](images/Capture8.JPG)
 
 ## Top donor occupations or top companies that donated to their candidates?
 
@@ -128,7 +128,7 @@ def get_top_amounts(group, key, n=5):
 grouped= fec_mrbo.groupby("cand_nm")
 grouped.apply(get_top_amounts,"contbr_employer", n=7)
 ```
-![image](https://github.com/EduardoJMR/Federal-Election-project/blob/master/images/Capture9.JPG)
+![image](images/Capture9.JPG)
 
 ## Percentage of total donations received by candidates for each donation size?
 
@@ -151,13 +151,13 @@ bucket_sums
 normed_sums=bucket_sums.div(bucket_sums.sum(axis="columns"), axis="index")
 normed_sums
 ```
-![image](https://github.com/EduardoJMR/Federal-Election-project/blob/master/images/Capture10.JPG)
+![image](images/Capture10.JPG)
 
 ### Visualizing the data
 
 ### Percentage of total donations received by candidates for each donation size.
 
-![image](https://github.com/EduardoJMR/Federal-Election-project/blob/master/images/Capture11.JPG)
+![image](images/Capture11.JPG)
 
 
 ## Donation Statistics by State?
@@ -175,7 +175,7 @@ percent.head(10)
 
 ### Relative percentage of total donations by state for each candidate
 
-![image](https://github.com/EduardoJMR/Federal-Election-project/blob/master/images/Capture12.JPG)
+![image](images/Capture12.JPG)
 
 
 
